@@ -13,7 +13,13 @@
 // 
 using namespace std;
 
-// 二叉查找树结点描述 
+// 二叉查找树结点描述
+typedef struct node {
+	int item;
+	struct node * pLeft;
+	struct node * pRight;
+} *pLink;
+
 typedef unsigned int KeyType;
 typedef struct Node {
 	KeyType key;			// 关键字 
@@ -27,31 +33,31 @@ typedef struct Node {
 // API
 void Insert(pNode &root, KeyType key);
 pNode SearchMinNode(pNode &root);
+pLink Node(int item, pLink pLeft, pLink pRight);
+pLink InsertNode(pLink p, int item);
 
 ///////////////////////////////////////////////////////////////
 // 
 int main(void)
 {
-	pNode root = NULL;
-	pNode pTmp = NULL;
-    KeyType uBufX[] = {23, 11, 68, 39, 8, 46, 75, 71};
-    
-    //vector<KeyType> vecX;
-    
+	pLink root = NULL;
+    int uBufX[] = {23, 11, 68, 39, 8, 46, 75, 71};
+        
     // 赋初值
-    for (int i=0; i<(sizeof(uBufX)/sizeof(KeyType)); i++)
+    for (int i=0; i<(sizeof(uBufX)/sizeof(int)); i++)
     {
           //vecX.push_back(uBufX[i]);
-          //cout << vecX[i] << " ";
-          Insert(root, uBufX[i]);
+          InsertNode(root, uBufX[i]);
     }
-    cout << endl;	   
+
+#if 0   
 	// @2017-10-16 遍历二叉树
 	if(pTmp = SearchMinNode(root))
 		cout << pTmp->key << ' ';
 	else 
 		cout << "Not find Min Node.\r\n";	
-    
+#endif
+
 	system("pause");
 	return 0;
 }
@@ -116,4 +122,30 @@ pNode SearchMinNode(pNode &root)
 	{
 		SearchMinNode(root->left);
 	}
+}
+
+///////////////////////////////////////////////////////////////
+// 创建单个Tree结点 2
+///////////////////////////////////////////////////////////////
+pLink Node(int item, pLink pLeft, pLink pRight)
+{
+	pLink p = (pLink)malloc(sizeof(*p));
+	p->item = item;
+	p->pLeft = pLeft;
+	p->pRight = pRight;
+	return p;
+}
+
+///////////////////////////////////////////////////////////////
+// 插入 2
+///////////////////////////////////////////////////////////////
+pLink InsertNode(pLink p, int item)
+{
+	if (p==NULL)
+		return Node(item, NULL, NULL);
+	if (item < p->item)
+		p->pLeft = InsertNode(p->pLeft, item);
+	else
+		p->pRight = InsertNode(p->pRight, item);
+	return p;
 }
