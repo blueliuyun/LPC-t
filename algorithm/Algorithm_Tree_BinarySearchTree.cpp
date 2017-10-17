@@ -19,15 +19,6 @@ typedef struct node {
 	struct node * pLeft;
 	struct node * pRight;
 } *pLink;
-
-typedef unsigned int KeyType;
-typedef struct Node {
-	KeyType key;			// 关键字 
-	struct Node * left;		// 左孩子指针 
-	struct Node * right;	// 右孩子指针 
-	struct Node * parent; 	// 指向父节点指针 
-}stNode, *pNode;
-
          
 ///////////////////////////////////////////////////////////////
 // API
@@ -35,12 +26,13 @@ void Insert(pNode &root, KeyType key);
 pNode SearchMinNode(pNode &root);
 pLink Node(int item, pLink pLeft, pLink pRight);
 pLink InsertNode(pLink p, int item);
+pLink DeleteNode(pLink p, int item);
 
 ///////////////////////////////////////////////////////////////
 // 
 int main(void)
 {
-	pLink root = NULL;
+	pLink root = NULL;	// 根节点
     int uBufX[] = {23, 11, 68, 39, 8, 46, 75, 71};
         
     // 赋初值
@@ -49,15 +41,7 @@ int main(void)
           //vecX.push_back(uBufX[i]);
           InsertNode(root, uBufX[i]);
     }
-
-#if 0   
-	// @2017-10-16 遍历二叉树
-	if(pTmp = SearchMinNode(root))
-		cout << pTmp->key << ' ';
-	else 
-		cout << "Not find Min Node.\r\n";	
-#endif
-
+	
 	system("pause");
 	return 0;
 }
@@ -148,4 +132,22 @@ pLink InsertNode(pLink p, int item)
 	else
 		p->pRight = InsertNode(p->pRight, item);
 	return p;
+}
+
+///////////////////////////////////////////////////////////////
+//
+// 删除 - 需考虑 3 中情况：
+// (1) 没有孩子节点，即为叶子结点，删除儿子结点。
+// (2) 只有 1 个孩子x结点。则可以直接把父结点相应的孩子指针指向
+//     该孩子x的独生子，删除儿子结点。
+// (3) 有 2 个孩子树（或结点）。可以选择左儿子中的最大元素或右儿
+//     子中的最小元素放到待删除结点的位置。习惯上，会选择左儿子中
+//     的最大元素。
+// 二叉树删除伪代码：
+//
+//
+///////////////////////////////////////////////////////////////
+pLink DeleteNode(pLink p, int item)
+{
+	
 }
