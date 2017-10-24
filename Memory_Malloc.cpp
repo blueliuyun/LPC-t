@@ -1,12 +1,14 @@
 ////////////////////////////////////////////////////////////////
 // 
-// @2017-09-23
-// （1）对于VS2005/VS2008编译器自带的内存检测工具/函数。
+// @2017-10-23
+// （1）对于VS2005/VS2008编译器自带的内存检测工具/函数.
 //		#include <crtdbg.h>
+// @2017-10-24
+// （1）验证 malloc() 函数 申请 heap 上的内存.
 //
 ////////////////////////////////////////////////////////////////
-// @2017-10-23 Memory Leak Check 
 
+// Memory Leak
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
 
@@ -18,7 +20,7 @@
 #include <iostream>
 #include <vector>
 
-//
+// 命名空间
 using namespace std;
 
 // 宏
@@ -42,11 +44,13 @@ class Ope{
       }
 };
 
+// 重载 new 操作符, 代码入侵检测 内存泄漏
+#define new new(_CLIENT_BLOCK, __FILE__, __LINE__)	
+
+//
 int main()
 {
-	#define new new(_CLIENT_BLOCK, __FILE__, __LINE__)	
-
-	// Test 
+	// Test : Memory Leak 
 	int* leak = new int[10];
 
     int x=1, y=2, z=3;
@@ -56,10 +60,28 @@ int main()
     cout << "u=" << u << endl;
     cout << "v=" << v << endl;
     
-	//delete [] leak;
+	//delete [] leak;	// Test : Memory Leak 
 
-	_CrtDumpMemoryLeaks();	//@2017-10-23 如果有对应的 delete [],则需要放在此函数之前的 Line .
 
+	// Test : malloc()
+	char *pChar = NULL;
+	//pChar = (char *)malloc(sizeof(char)*10);		// s1.申请内存 malloc, 申请的内存空间未初始化
+	pChar = (char *)calloc(15, sizeof(char));
+	
+	if (pChar == NULL)		// s2. 申请了内存空间后，必须检查是否分配成功!!!
+	{
+		cout << "Can't get memory!" << endl;
+		return -1;
+	}
+	printf("pChar = %d\n", *pChar);	// s3. 打印 malloc()  与 calloc() 申请内存空间内容的区别.
+	memset(pChar, 'a', sizeof(char)*10);
+	cout << *pChar << endl;
+	//free(pChar);	// s-4 : 释放内存, malloc() , calloc() 都可以用 free() 释放
+	pChar = NULL;	// s-5 : 释放内存后指针指向 NULL
+
+
+	// Test : Memory Leak  如果有对应的 delete [],则需要放在此函数之前的 Line .
+	_CrtDumpMemoryLeaks();
 	// pause
 	system("pause");
 	return 0;
