@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PRJ_Algorithm", "PRJ_Algorithm.vcproj", "{1FE4433A-7DE5-43B5-A31A-B53BE79A6E09}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PRJ_Libevent", "PRJ_Algorithm.vcproj", "{1FE4433A-7DE5-43B5-A31A-B53BE79A6E09}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PRJ_Libevent_TestTime", "..\PRJ_Libevent_TestTime\PRJ_Libevent_TestTime.vcproj", "{3C6F5485-F2A9-46E9-83F6-A58B16DCB1FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{1FE4433A-7DE5-43B5-A31A-B53BE79A6E09}.Debug|Win32.Build.0 = Debug|Win32
 		{1FE4433A-7DE5-43B5-A31A-B53BE79A6E09}.Release|Win32.ActiveCfg = Release|Win32
 		{1FE4433A-7DE5-43B5-A31A-B53BE79A6E09}.Release|Win32.Build.0 = Release|Win32
+		{3C6F5485-F2A9-46E9-83F6-A58B16DCB1FC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3C6F5485-F2A9-46E9-83F6-A58B16DCB1FC}.Debug|Win32.Build.0 = Debug|Win32
+		{3C6F5485-F2A9-46E9-83F6-A58B16DCB1FC}.Release|Win32.ActiveCfg = Release|Win32
+		{3C6F5485-F2A9-46E9-83F6-A58B16DCB1FC}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

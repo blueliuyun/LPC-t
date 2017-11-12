@@ -189,6 +189,10 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\Include\nmake\evconfig-private.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Include\evdns.h"
 				>
 			</File>
@@ -321,14 +325,6 @@
 				</File>
 				<File
 					RelativePath=".\Include\event2\visibility.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="nmake"
-				>
-				<File
-					RelativePath=".\Include\nmake\evconfig-private.h"
 					>
 				</File>
 			</Filter>
