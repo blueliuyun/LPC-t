@@ -18,11 +18,18 @@
 /* namespace */
 using namespace std;
 
-/* 函数模板 */
+/* 函数模板 1, 形参类型必须相同*/
 template<typename T>
 T TMin(T a, T b)
 {
 	return (a<b)?a:b;
+}
+
+/* 函数模板 2, 形参类型可以不同*/
+template<class T, class U>
+U TSum(T a, U b)
+{
+	return (a+b);
 }
 
 /* Class */
@@ -39,9 +46,10 @@ class Ope{
 
 int main()
 {
-	int x=6, y=9, z;
-	z = TMin(x, y);
-	printf("%d", z);
+	int x=6, y=9;
+	float z=3.14; 
+	printf("TMin = %d\r\n", TMin(x, y));
+	printf("TMax = %f\r\n", TSum(x, z));
 	// pause
 	system("pause");
 	return 0;
