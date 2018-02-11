@@ -36,6 +36,9 @@
 *			......
 *		}; 
 *		从上面的定义可以看出，map的value_type是std::pair<const Key, t>类型，它的first值就是关键字，second值保存map的值域 
+*	(5)@output result
+*		=>	found key:30 value:english
+*		=>	请按任意键继续. . .
 *
 */
 
