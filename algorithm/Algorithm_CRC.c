@@ -2,7 +2,7 @@
 //
 //
 ///////////////////////////////////////////////////////////////
-// Í·ÎÄ¼ş
+// å¤´æ–‡ä»¶
 #include <stdarg.h>
 #include <string.h>
 #include <stdlib.h>
@@ -11,7 +11,7 @@
 
 
 ///////////////////////////////////////////////////////////////
-// CRC16 ²é±í 
+// CRC16 æŸ¥è¡¨ 
 const unsigned short crc16_xtab[256] =
 {
    0x0000, 0xc0c1, 0xc181, 0x0140, 0xc301, 0x03c0, 0x0280, 0xc241,
@@ -85,16 +85,16 @@ static const unsigned short crc16_tab[] = {
     0x6e17, 0x7e36, 0x4e55, 0x5e74, 0x2e93, 0x3eb2, 0x0ed1, 0x1ef0, 
 };
 ///////////////////////////////////////////////////////////////
-// º¯ÊıÉùÃ÷
+// å‡½æ•°å£°æ˜
 //
 ///////////////////////////////////////////////////////////////
-// º¯ÊıÃû : crc16
-// ±¸  ×¢ : ¼ÆËã³¤¶È  nLen µÄ *buf Ö¸ÏòÊı×éµÄ CRC16 Ğ£ÑéÂë 
+// å‡½æ•°å : crc16
+// å¤‡  æ³¨ : è®¡ç®—é•¿åº¦  nLen çš„ *buf æŒ‡å‘æ•°ç»„çš„ CRC16 æ ¡éªŒç  
 ///////////////////////////////////////////////////////////////
 unsigned short crc16(unsigned char *buf, unsigned short nLen); 
 
 
-// Õª×Ô - RTThread Ô´Âë 
+// æ‘˜è‡ª - RTThread æºç  
 unsigned short cyg_crc16(unsigned char *buf, int len);
 
 ///////////////////////////////////////////////////////////////
@@ -105,11 +105,11 @@ int main(void)
     unsigned short nCrcValue = 0x00;
     char buf[] = {'a','b'};
     
-   	// ·½·¨1 - ´òÓ¡ 
+   	// æ–¹æ³•1 - æ‰“å° 
 	nCrcValue = crc16(buf, 2);	
 	printf("%0x\n", nCrcValue);
 	
-	// ·½·¨2 - ´òÓ¡ 
+	// æ–¹æ³•2 - æ‰“å° 
 	nCrcValue = cyg_crc16(buf, 2);
 	printf("%0x\n", nCrcValue);
 	
@@ -119,8 +119,8 @@ int main(void)
 }
 
 
-// Õª×Ô - LPC-3500 Ô´Âë -
-// @2016.12.22 ¼ÆËã½á¹ûËÆºõ²»ÕıÈ· 
+// æ‘˜è‡ª - 3500 
+// @2016.12.22 è®¡ç®—ç»“æœä¼¼ä¹ä¸æ­£ç¡® 
 unsigned short crc16(unsigned char *buf, unsigned short nLen)
 {
   	unsigned short crc = 0xffff;
@@ -133,8 +133,8 @@ unsigned short crc16(unsigned char *buf, unsigned short nLen)
 	return crc;
 }
 
-// Õª×Ô - RTThread Ô´Âë 
-// @2016.12.22 ¼ÆËã½á¹ûÓë CheckTool Ğ£Ñé¹¤¾ß½á¹ûÒ»ÖÂ£¡ 
+// æ‘˜è‡ª - RTThread æºç  
+// @2016.12.22 è®¡ç®—ç»“æœä¸ CheckTool æ ¡éªŒå·¥å…·ç»“æœä¸€è‡´ï¼ 
 unsigned short cyg_crc16(unsigned char *buf, int len)
 {
     int i;
